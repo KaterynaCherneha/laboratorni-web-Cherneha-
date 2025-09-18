@@ -4,56 +4,116 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Settings</title>
+
+    <!-- Підключення CSS -->
+    <link rel="stylesheet" href="resources/reset.css" />
+    <link rel="stylesheet" href="resources/styles.css" />
+
+    <!-- Google Fonts -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       body {
-        background-color: rgb(255, 180, 224); /* рожевий фон */
-        color: rgb(233, 19, 133); /* малиновий текст */
-        font-family: Arial, sans-serif;
+        background-color: rgb(222, 222, 222);
+        color: rgb(0, 0, 0);
+        font-family: "Inter", sans-serif;
       }
       a {
-        color: rgb(233, 19, 133); /* посилання теж малинові */
+        color: rgb(0, 0, 0);
         text-decoration: underline;
       }
       table {
         border-collapse: collapse;
       }
-      th,
-      td {
-        padding: 5px 10px;
-        text-align: left;
+      th {
+        font-weight: normal;
       }
     </style>
   </head>
   <body>
-    <h1>Settings</h1>
+    <h1 class="settings">Settings</h1>
 
-    <div>
-      <p>All settings</p>
-      <p>Published</p>
-      <p>BTC</p>
-      <p>USDT</p>
-      <p>TON</p>
+    <div class="menu">
+      <a href="#" class="menu-item">All settings</a>
+      <a href="#" class="menu-item">Published</a>
+      <a href="#" class="menu-item">BTC</a>
+      <a href="#" class="menu-item">USDT</a>
+      <a href="#" class="menu-item">TON</a>
     </div>
 
-    <table>
+    <table class="list">
       <thead>
         <tr>
-          <th>Setting name</th>
-          <th>Status</th>
+          <th class="first-line">Setting name</th>
+          <th class="second-line">Status</th>
+          <th class="third-line"></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><a href="#">Content</a></td>
-          <td>Draft <span>🗑</span></td>
+          <td class="first-line">
+            <a href="#"> Content </a>
+          </td>
+          <td class="second-line"><div class="draft-status">Draft</div></td>
+          <td class="third-line">
+            <button>
+              <img class="delete-button" src="Delete.png" aria-label="Delete" />
+            </button>
+          </td>
         </tr>
         <tr>
-          <td><a href="#">Content</a></td>
-          <td>Active <span>🗑</span></td>
+          <td class="first-line">
+            <a href="#">Content</a>
+          </td>
+          <td class="second-line"><div class="active-status">Active</div></td>
+          <td class="third-line">
+            <button>
+              <img class="delete-button" src="Delete.png" aria-label="Delete" />
+            </button>
+          </td>
+          
+          </td>
         </tr>
         <tr>
-          <td><a href="#">Content</a></td>
-          <td>Active <span>🗑</span></td>
+          <td class="first-line">
+            <a href="#">Content</a>
+          </td>
+          <td class="second-line"><div class="active-status">Active</div></td>
+           <td class="third-line">
+            <button>
+              <img class="delete-button" src="Delete.png" aria-label="Delete" />
+            </button>
+          </td>
+
+          </td>
+        </tr>
+        <tr>
+          <td class="first-line">
+            <a href="#">Content</a>
+          </td>
+          <td class="second-line"><div class="active-status">Active</div></td>
+         <td class="third-line">
+            <button>
+              <img class="delete-button" src="Delete.png" aria-label="Delete" />
+            </button>
+          </td>
+          </td>
+        </tr>
+        <tr>
+          <td class="first-line">
+            <a href="#">Content</a>
+          </td>
+          <td class="second-line"><div class="draft-status">Draft</div></td>
+           <td class="third-line">
+            <button>
+              <img class="delete-button" src="Delete.png" aria-label="Delete" />
+            </button>
+          </td>
+          </td>
         </tr>
       </tbody>
     </table>

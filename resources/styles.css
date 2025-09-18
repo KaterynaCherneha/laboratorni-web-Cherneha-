@@ -63,14 +63,13 @@
         height: 52px;
     
         background: #FFFFFF;
-        border-bottom: 2px solid #ffffff;
     
         /* Inside auto layout */
         flex: none;
         order: 0;
         flex-grow: 0;
 }
-/* .class-bl{
+.class-bl{
     /* Content */
     
         width: 50px;
@@ -93,7 +92,7 @@
         flex: none;
         order: 0;
         flex-grow: 0;
-} */
+}
 .menu-item:focus{
         border-bottom: 2px solid #29845A;
 }

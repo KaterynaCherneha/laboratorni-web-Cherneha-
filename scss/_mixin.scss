@@ -1,0 +1,17 @@
+@import 'variables';
+
+// Міксин для границі
+@mixin bordered($color: $primary-color, $width: 2px) {
+    border: $width solid $color;
+    border-radius: $border-radius;
+}
+
+// Міксин для тіні
+@mixin shadowed($shadow: $box-shadow) {
+    box-shadow: $shadow;
+}
+
+// Міксин для адаптивного шрифту
+@mixin responsive-font($min, $max) {
+    font-size: clamp(#{$min}px, 2vw, #{$max}px);
+}

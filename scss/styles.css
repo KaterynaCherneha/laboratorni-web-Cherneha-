@@ -10,15 +10,18 @@ body .container {
   padding: 24px;
 }
 body .container .card {
-  background: #beb7b7;
+  background: #fff;
   border: 3px solid #2ecc71;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
 }
-
-
+body .container .card h2 {
+  font-family: "Montserrat", Arial, sans-serif;
+  color: #3498db;
+  font-size: clamp(20px, 2vw, 32px);
+}
 body .container .card p {
   color: rgb(8.5, 8.5, 8.5);
 }
@@ -52,28 +55,6 @@ body .container .card:hover {
   background-color: #e0f7fa;
 }
 
-@media (min-width: 768px) {
-  .wrapper {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: -10px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .wrapper {
-    margin-bottom: -20px;
-  }
-}
-
-/* Маленькі екрани(мобільні пристрої)*/
-@media (max-width: 480px) {
-  .container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-}
 .delete-button1 {
   /* Delete */
   width: 20px;
@@ -83,6 +64,7 @@ body .container .card:hover {
   order: 0;
   flex-grow: 0;
 }
+
 
 /* filters */
 .menu1 {

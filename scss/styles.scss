@@ -2,17 +2,16 @@
 @import 'mixin';
 
 body {
-    
     font-family: $main-font;
-    
+    background: $background-color;
     color: $text-color;
     transition: $transition;
-    
 
     .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 24px;
+        width: 100vw;
 
         .card {
             background: #fff;
@@ -31,7 +30,6 @@ body {
                 color: darken($text-color, 10%);
             }
 
-            // Використання вбудованої функції lighten
             &:hover {
                 background: lighten($secondary-color, 40%);
             }
@@ -39,7 +37,7 @@ body {
     }
 }
 
-// Адаптивність
+// ✅ Адаптивність — винесена окремо
 @media (max-width: 768px) {
     .container {
         padding: 12px;
@@ -68,9 +66,7 @@ body {
     }
 }
 
-.setting-item.active1 {
-    background-color: #e0f7fa;
-}
+
 
 .delete-button1 {
     /* Delete */
@@ -549,7 +545,6 @@ h1 {
 }
 
 .img-wrapper {
-    width: 800px;
     height: 420px;
     background-color: #fff;
     border-radius: 12px;
@@ -623,7 +618,7 @@ h1 {
     background-color: #fff;
     border-radius: 8px;
     padding: 28px 20px;
-    height: 800px;
+    height: fit-content;
 }
 
 .formula-wrapper {

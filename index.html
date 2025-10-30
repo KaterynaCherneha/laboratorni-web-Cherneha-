@@ -5,19 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Settings</title>
 
-    <!-- Підключення CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="resources/reset.css" />
     <link rel="stylesheet" href="scss/styles.css" />
-
-    
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
-    <!-- Google Fonts -->
-
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
-      
     />
 
     <style>
@@ -32,94 +26,114 @@
       }
       table {
         border-collapse: collapse;
+        width: 100%;
       }
       th {
         font-weight: normal;
       }
+      .hidden {
+        display: none !important;
+      }
+      .active-status1 {
+        color: green;
+        font-weight: bold;
+      }
+      .draft-status1 {
+        color: gray;
+        font-style: italic;
+      }
+
+      /* Вирівнювання заголовка і кнопки */
+      .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .settings1 {
+        font-size: 2rem;
+        margin: 0;
+      }
+      .btn-link {
+        background-color: #000;
+        color: #fff;
+        padding: 8px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        font-family: "Inter", sans-serif;
+      }
+      .btn-link:hover {
+        background-color: #333;
+      }
     </style>
   </head>
   <body>
-    <h1 class="settings1">Settings</h1>
+    <div class="containerr">
+      <div class="header-row">
+        <h1 class="settings1">Settings</h1>
+        <a href="#" id="createSettingBtn" class="btn-link">Create Setting</a>
+      </div>
 
-    <div class="menu1">
-      <a href="#" class="menu-item1">All settings</a>
-      <a href="#" class="menu-item1">Published</a>
-      <a href="#" class="menu-item1">BTC</a>
-      <a href="#" class="menu-item1">USDT</a>
-      <a href="#" class="menu-item1">TON</a>
+      <div class="menu1">
+        <a href="#" class="menu-item1">All settings</a>
+        <a href="#" class="menu-item1">Published</a>
+        <a href="#" class="menu-item1">BTC</a>
+        <a href="#" class="menu-item1">USDT</a>
+        <a href="#" class="menu-item1">TON</a>
+      </div>
+
+      <div id="emptyState" class="hidden">
+        <img src="Group 182.png" alt="chair" />
+        <p>Oopsie, seems that you have no formulas yet</p>
+        <p>Create your first formula!</p>
+        <a href="formula.html" class="plus-button3">+</a>
+      </div>
+
+      <table class="list1" id="settingsTable">
+        <thead>
+          <tr>
+            <th class="first-line1">Setting name</th>
+            <th class="second-line1">Status</th>
+            <th class="third-line1"></th>
+          </tr>
+        </thead>
+        <tbody id="settingsList"></tbody>
+      </table>
+
+      <template id="settingTemplate">
+        <tr class="setting-line">
+          <td class="first-line1">
+            <a href="#" class="setting-link">Назва</a>
+          </td>
+          <td class="second-line1">
+            <div class="setting-status">Статус</div>
+          </td>
+          <td class="third-line1">
+            <button class="remove-button">
+              <img
+                class="delete-button1"
+                src="Delete.png"
+                aria-label="Delete"
+              />
+            </button>
+          </td>
+        </tr>
+      </template>
+
+      <script type="application/json" id="stateJson">
+        {
+          "settings": [
+            { "id": 1, "title": "Content", "status": "draft" },
+            { "id": 2, "title": "Content", "status": "active" },
+            { "id": 3, "title": "Content", "status": "active" },
+            { "id": 4, "title": "Content", "status": "active" },
+            { "id": 5, "title": "Content", "status": "draft" }
+          ]
+        }
+      </script>
+
+      <script src="scripts/setting-page.js" defer></script>
     </div>
-
-    <table class="list1">
-      <thead>
-        <tr>
-          <th class="first-line1">Setting name</th>
-          <th class="second-line1">Status</th>
-          <th class="third-line1"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="first-line1">
-            <a href="#"> Content </a>
-          </td>
-          <td class="second-line1"><div class="draft-status1">Draft</div></td>
-          <td class="third-line1">
-            <button>
-              <img class="delete-button1" src="Delete.png" aria-label="Delete" />
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td class="first-line1">
-            <a href="#">Content</a>
-          </td>
-          <td class="second-line1"><div class="active-status1">Active</div></td>
-          <td class="third-line1">
-            <button>
-              <img class="delete-button1" src="Delete.png" aria-label="Delete" />
-            </button>
-          </td>
-          
-          </td>
-        </tr>
-        <tr>
-          <td class="first-line1">
-            <a href="#">Content</a>
-          </td>
-          <td class="second-line1"><div class="active-status1">Active</div></td>
-           <td class="third-line1">
-            <button>
-              <img class="delete-button1" src="Delete.png" aria-label="Delete" />
-            </button>
-          </td>
-
-          </td>
-        </tr>
-        <tr>
-          <td class="first-line1">
-            <a href="#">Content</a>
-          </td>
-          <td class="second-line1"><div class="active-status1">Active</div></td>
-         <td class="third-line1">
-            <button>
-              <img class="delete-button1" src="Delete.png" aria-label="Delete" />
-            </button>
-          </td>
-          </td>
-        </tr>
-        <tr>
-          <td class="first-line1">
-            <a href="#">Content</a>
-          </td>
-          <td class="second-line1"><div class="draft-status1">Draft</div></td>
-           <td class="third-line1">
-            <button>
-              <img class="delete-button1" src="Delete.png" aria-label="Delete" />
-            </button>
-          </td>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </body>
 </html>

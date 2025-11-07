@@ -1,6 +1,224 @@
 @import 'variables';
 @import 'mixin';
 
+/* ...existing code... */
+/* ...existing code... */
+
+/* Title card */
+.title-section {
+    /* зменшена ширина, центрована */
+    width: calc(100% - 64px);
+    /* відступи з боків */
+    max-width: 980px;
+    /* змінити число, якщо треба ще вужче/ширше */
+    margin: 12px auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* black label on top-left (keeps small) */
+.title-section .title {
+    color: #111;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+    min-width: 64px;
+}
+
+/* container for input + actions (flex grows) */
+.title-section .title-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+/* inline create form that sits inside the card */
+.create-setting-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+/* input fills available space */
+.create-setting-input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #e6e6e6;
+    background: #f8f8f8;
+    font-size: 14px;
+    outline: none;
+}
+
+/* actions on the right */
+.create-setting-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* keep buttons compact */
+.create-setting-actions .btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* ensure original hidden utility */
+.hidden {
+    display: none !important;
+}
+.container {
+  max-width: 1150px;
+  margin: 24px auto;
+  padding: 12px;
+  font-family: "Inter", Arial, sans-serif;
+  color:#222;
+  background: #f6f6f6;
+}
+
+.page-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.breadcrumbs { color:#666; font-size:13px; }
+
+.header-controls { display:flex; gap:8px; align-items:center; }
+
+.btn {
+  padding:6px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  border:1px solid rgba(0,0,0,0.08);
+  background:#fff;
+}
+.btn-primary { background:#111; color:#fff; border-color:#111; }
+.btn-secondary { background:#fff; color:#111; }
+
+/* title/input */
+.title-section { margin:12px 0 18px; display:flex; flex-direction:column; gap:8px; }
+.title { font-size:14px; color:#333; margin-bottom:6px; }
+.input-new {
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  padding:6px 12px;
+  background:#fff;
+  border:0.66px solid #8a8a8a;
+  border-radius:8px;
+  width:100%;
+}
+.input-new .value-input {
+  border:none;
+  outline:none;
+  width:100%;
+  background:transparent;
+  font-size:14px;
+}
+
+/* formulas card */
+.formulas-card {
+  background:#fff;
+  border-radius:8px;
+  padding:18px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.06);
+  margin-top:12px;
+}
+.formulas-title { font-size:18px; margin-bottom:12px; }
+
+/* list */
+.list { list-style:none; padding:0; margin:0; }
+.setting-line { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f0f0f0; }
+.setting-link { color:#6c3fc5; text-decoration:none; font-size:15px; }
+
+/* empty-state */
+.empty-state {
+  max-width:760px;
+  margin:24px auto;
+  padding:28px;
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+.empty-image { width:120px; height:auto; opacity:0.95; }
+.empty-state-title { margin:8px 0 0; font-size:18px; }
+.empty-state-desc { color:#666; font-size:14px; }
+
+/* hide save/discard by default */
+#saveBtn, #discardBtn { display:none; }
+
+/* responsive */
+@media (max-width:900px){
+  .container { padding:10px; }
+  .formulas-card { padding:12px; }
+}
+/* ...existing code... */
+.formulas-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: block;
+}
+
+.empty-state {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 36px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.empty-image {
+    width: 120px;
+    height: auto;
+    opacity: 0.95;
+}
+
+.input-new {
+    width: 100%;
+    margin: 8px 0;
+    padding: 6px 12px;
+    background: #FDFDFD;
+    border: 0.66px solid #5e5d5d;
+    border-radius: 8px;
+}
+
+.input-new .value-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background: transparent;
+    font-size: 14px;
+}
+
+/* show/hide save/discard buttons default hidden until editing mode */
+#saveBtn,
+#discardBtn {
+    display: none;
+}
 .header-row {
     display: flex;
     justify-content: space-between;

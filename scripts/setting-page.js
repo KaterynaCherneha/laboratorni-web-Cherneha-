@@ -1,81 +1,82 @@
-// 🎯 Селектори DOM-елементів, які використовуються в скрипті
 const selectors = {
-  stateJson: '#stateJson',             // Елемент, що містить JSON-стан
-  settingsList: '#settingsList',       // Контейнер для списку налаштувань
-  settingTemplate: '#settingTemplate', // <template> для рендерингу налаштування
-  settingsTable: '#settingsTable',     // Таблиця налаштувань
-  emptyState: '#emptyState',           // Елемент, що показується при порожньому стані
-  createSettingBtn: '#createSettingBtn'// Кнопка для створення нового налаштування
+  stateJson: "#state",
+  removeBtn: ".removeBtn",
+  editBtn: ".editBtn",
+  formulaLink: ".formula-link",
+  emptyState: ".img-wrapper",
+  formulaTemplate: ".formulaTemplateElem",
+  formulaList: ".formula-list",
+  formulasWrapper: ".formulas-wrapper",
+  save: ".save",
+  titleInput: ".settingTitleInput"
 };
 
-//тримуємо початковий JSON-стан з DOM і парсимо його
-const initialState = document.querySelector(selectors.stateJson).textContent;
-const state = JSON.parse(initialState);
+const state = JSON.parse(document.querySelector(selectors.stateJson).textContent);
+const id = 1;
+const setting = state.settings.find((s) => s.id === id);
 
-//Функція рендерингу одного налаштування
-function renderSetting(setting) {
-  const template = document.querySelector(selectors.settingTemplate);
-  const clone = template.content.cloneNode(true); // Клонуємо шаблон
+const inputTitle = document.querySelector(selectors.titleInput);
+const saveBtn = document.querySelector(selectors.save);
 
-  const row = clone.querySelector('.setting-line');
-  row.id = `setting-${setting.id}`; // Унікальний ID для кожного рядка
-
-  const link = clone.querySelector('.setting-link');
-  link.textContent = setting.title; // Назва налаштування
-  link.href = `#setting-${setting.id}`; // Посилання на елемент
-
-  const status = clone.querySelector('.setting-status');
-  status.textContent = setting.status.charAt(0).toUpperCase() + setting.status.slice(1); // Форматуємо статус
-  status.classList.add(
-    setting.status === 'active' ? 'active-status1' : 'draft-status1' // Додаємо клас залежно від статусу
-  );
-
-  const removeBtn = clone.querySelector('.remove-button');
-  //Обробник події для видалення налаштування
-  removeBtn.addEventListener('click', () => removeSetting(row, setting.id));
-
-  // Додаємо елемент до DOM
-  document.querySelector(selectors.settingsList).appendChild(clone);
-}
-
-//Видалення налаштування з DOM і стану
-function removeSetting(row, id) {
-  row.remove(); // Видаляємо HTML-елемент
-  const index = state.settings.findIndex(s => s.id === id); // Знаходимо індекс у масиві
-  if (index !== -1) {
-    state.settings.splice(index, 1); // Видаляємо з масиву
+const toggleEmptyState = () => {
+  const emptyStateElem = document.querySelector(selectors.emptyState);
+  const formulaElem = document.querySelector(selectors.formulasWrapper);
+  if (!setting.formulas.length) {
+    formulaElem.classList.add("hidden");
+    emptyStateElem.classList.remove("hidden");
+  } else {
+    emptyStateElem.classList.add("hidden");
+    formulaElem.classList.remove("hidden");
   }
-  toggleEmptyState(); // Оновлюємо порожній стан
-}
+};
 
-//Додавання нового налаштування
-function addNewSetting() {
-  const newSetting = {
-    id: Date.now(),       // Унікальний ID на основі часу  
-    title: `Content`,     // Назва за замовчуванням
-    status: 'draft'       // Статус за замовчуванням
+const removeFormula = (id) => {
+  setting.formulas = setting.formulas.filter((f) => f.id !== id);
+  const formulaElem = document.getElementById(id);
+  if (formulaElem) formulaElem.remove();
+  toggleEmptyState();
+};
+
+const renderFormulaElem = (formula) => {
+  const template = document.querySelector(selectors.formulaTemplate);
+  const clone = template.cloneNode(true);
+  clone.classList.remove("hidden");
+  clone.id = formula.id;
+
+  clone.querySelector(selectors.formulaLink).textContent = formula.title;
+  clone.querySelector(selectors.formulaLink).href = `/formula.html?id=${formula.id}`;
+  clone.querySelector(selectors.editBtn).href = `/formula.html?id=${formula.id}`;
+  clone.querySelector(selectors.removeBtn).addEventListener("click", () => removeFormula(formula.id));
+
+  document.querySelector(selectors.formulaList).appendChild(clone);
+  toggleEmptyState();
+};
+
+saveBtn.addEventListener("click", () => {
+  const title = inputTitle.value.trim();
+  if (!title) return;
+
+  const newFormula = {
+    id: Date.now(),
+    title: title,
+    formula: "X + Y",
+    frequency: 2000,
+    currency: "BTC",
+    targets: {
+      collectionsIds: [],
+      products: []
+    }
   };
-  state.settings.push(newSetting); // Додаємо до стану
-  renderSetting(newSetting);       // Рендеримо нове налаштування
-  toggleEmptyState();              // Оновлюємо порожній стан
-}
 
-//Перевірка, чи є налаштування, і оновлення інтерфейсу
-function toggleEmptyState() {
-  const isEmpty = state.settings.length === 0;
-  document.querySelector(selectors.emptyState).classList.toggle('hidden', !isEmpty);     // Показати/сховати порожній стан
-  document.querySelector(selectors.settingsTable).classList.toggle('hidden', isEmpty);   // Показати/сховати таблицю
-}
+  setting.formulas.push(newFormula);
+  renderFormulaElem(newFormula);
 
-//Ініціалізація: рендеримо всі налаштування з початкового стану
-state.settings.forEach(renderSetting);
-toggleEmptyState();
-
-//Обробник події для кнопки створення нового налаштування
-document.querySelector(selectors.createSettingBtn).addEventListener('click', (e) => {
-  e.preventDefault(); // Запобігаємо перезавантаженню сторінки
-  addNewSetting();    // Додаємо нове налаштування
+  inputTitle.value = setting.title || "";
+  saveBtn.disabled = true;
+  discardBtn.disabled = true;
+  saveBtn.classList.add("disabled");
+  discardBtn.classList.add("disabled");
 });
 
-
-
+setting.formulas.forEach(renderFormulaElem);
+toggleEmptyState();
